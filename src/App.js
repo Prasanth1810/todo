@@ -15,8 +15,20 @@ class App extends Component {
     this.state = {
       userInput: "",
       list: [],
+      date:""
     };
+    
+    // const date = {currentTime: (new Date()).toLocaleString()}
+    // this.setState({date:date });
   }
+  componentDidMount() {
+    this.getDate();
+  }
+
+  getDate = () => {
+    var date = new Date().toDateString();
+    this.setState({ date });
+  };
 
   //Setting the value of user input
   updateInput(value) {
@@ -65,6 +77,7 @@ class App extends Component {
     }
   }
   render(){
+    const {date} = this.state;
     return(
       <Container>
         <Row style={{
@@ -125,6 +138,11 @@ class App extends Component {
                           onClick={()=>this.editItem(index)}>
                           Edit
                           </Button>
+                          <div style={{
+                            textAlign:"center"
+                          }}>
+                            {date}
+                          </div>
                         </span>
                       </ListGroup.Item>
                     </div>
